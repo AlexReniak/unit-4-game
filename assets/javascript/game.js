@@ -2,8 +2,8 @@
 // generate random computer score
 // assign random value to pictures
 // create reset function to change target score and crystal image value
-// add wins and losses to html
 // clicking on a picture will add points to total score
+// add wins and losses to html
 // if player matches score to computer score, they win
 // if player goes over computer score, they lose
 // game resets when player matches score, or goes over
@@ -11,28 +11,32 @@
 var playerScore = 0;
 var totalWins = 0;
 var totalLosses = 0;
-var pictureValue = [];
-var targetValues = [59, 52, 63, 64, 72];
+//var pictureValue;
+//var targetValues = [59, 52, 63, 64, 72];
 var targetScore;
 
 function reset() {
-  for(i = 0; i < 4; i++) {
-    pictureValue[i] = Math.floor(Math.random() * 11 + 1);
-  }
-  console.log(pictureValue);
-  targetScore = targetValues[Math.floor(Math.random() * targetValues.length)]
+
+  targetScore = Math.floor(Math.random() * 50 + 30)
+
   console.log(targetScore);
+
   playerScore = 0;
+
   $("#target-value").text(`Target Score: ${targetScore}`);
+
   $("#wins-text").text(`Wins: ${totalWins}`);
+
   $("#losses-text").text(`Losses: ${totalLosses}`);
+
 };
 
 reset();
 
-$("#player-score").text(`Current Score: ${playerScore}`)
+  for (var i = 0; i < 4; i++) {
 
-for (var i = 0; i < pictureValue.length; i++) {
+  var pictureValue = Math.floor(Math.random() * 11 + 1)
+  console.log(pictureValue);
 
   var crystalImage = $("<img>");
 
@@ -40,7 +44,7 @@ for (var i = 0; i < pictureValue.length; i++) {
 
   crystalImage.attr("src", "assets/images/crystal.jpg");
 
-  crystalImage.attr("data-crystalvalue", pictureValue[i]);
+  crystalImage.attr("data-crystalvalue", pictureValue);
 
   $("#crystals").append(crystalImage);
 }
@@ -53,23 +57,26 @@ $(".crystal-image").on("click", function() {
   playerScore += crystalValue;
   alert("New Score: " + playerScore);
 
+  $("#player-score").text(`Current Score: ${playerScore}`)
+
   if (playerScore === targetScore) {
-    alert("You Win!");
+    alert("You win!");
     totalWins++
+    //$("#wins-text").text(`Wins: ${totalWins}`);
     reset();
   }
 
   else if (playerScore >= targetScore) {
-    alert("Your lose. Try again.");
+    alert("Your lose. Click on a crystal to try again.");
     totalLosses++
+    //$("#losses-text").text(`Losses: ${totalLosses}`);
     reset();
   }
 })
 
 
-// for(i = 0; i < 3; i++) {
+// for(i = 0; i < 4; i++) {
 //  pictureValue[i] = Math.floor(Math.random() * 11 + 1);
-//  console.log(pictureValue);
 // }
 // targetScore = Math.floor(Math.random() * 50 + 30);
 // console.log(targetScore);
