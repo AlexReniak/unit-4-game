@@ -1,3 +1,8 @@
 body {
-  background: 
+  background: #e6fff7;
+}
+
+.crystal-image {
+  margin: 10px;
+  border: black solid 2px;
 }

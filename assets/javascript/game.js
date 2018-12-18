@@ -11,30 +11,32 @@
 var playerScore = 0;
 var totalWins = 0;
 var totalLosses = 0;
-var pictureValue = []
-var targetValues = [59, 52, 63, 64, 72]
+var pictureValue = [];
+var targetValues = [59, 52, 63, 64, 72];
 var targetScore;
 
 function reset() {
   for(i = 0; i < 4; i++) {
-  pictureValue[i] = Math.floor(Math.random() * 11 + 1);
+    pictureValue[i] = Math.floor(Math.random() * 11 + 1);
   }
+  console.log(pictureValue);
   targetScore = targetValues[Math.floor(Math.random() * targetValues.length)]
   console.log(targetScore);
-  playerScore = 0
-  $("#target-value").text(targetScore);
-  $("#wins-text").text("Wins: " + totalWins);
-  $("#losses-text").text("Losses: " + totalLosses);
+  playerScore = 0;
+  $("#target-value").text(`Target Score: ${targetScore}`);
+  $("#wins-text").text(`Wins: ${totalWins}`);
+  $("#losses-text").text(`Losses: ${totalLosses}`);
 };
 
 reset();
 
-console.log(pictureValue);
+$("#player-score").text(`Current Score: ${playerScore}`)
+
 for (var i = 0; i < pictureValue.length; i++) {
 
   var crystalImage = $("<img>");
 
-  crystalImage.addClass("crystal-image")
+  crystalImage.addClass("crystal-image");
 
   crystalImage.attr("src", "assets/images/crystal.jpg");
 
@@ -49,7 +51,7 @@ $(".crystal-image").on("click", function() {
   crystalValue = parseInt(crystalValue);
 
   playerScore += crystalValue;
-  alert("New Score: " + playerScore)
+  alert("New Score: " + playerScore);
 
   if (playerScore === targetScore) {
     alert("You Win!");
