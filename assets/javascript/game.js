@@ -17,7 +17,7 @@ var targetScore;
 
 function reset() {
 
-  targetScore = Math.floor(Math.random() * 50 + 30)
+  targetScore = Math.floor(Math.random() * 108 + 18);
 
   console.log(targetScore);
 
@@ -44,6 +44,7 @@ function reset() {
  crystalImage.attr("data-crystalvalue", pictureValue[i]);
 
  $("#crystals").append(crystalImage);
+
 }
 
 };
@@ -58,7 +59,6 @@ $("#crystals").on("click", ".crystal-image", function() {
   crystalValue = parseInt(crystalValue);
 
   playerScore += crystalValue;
-  alert("New Score: " + playerScore);
 
   $("#player-score").text(`Current Score: ${playerScore}`)
 
