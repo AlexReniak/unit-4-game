@@ -1,31 +1,42 @@
 // set variables
 // generate random computer score
 // assign random value to pictures
-// create reset function
+// create reset function to change target score and crystal image value
+// add wins and losses to html
 // clicking on a picture will add points to total score
 // if player matches score to computer score, they win
 // if player goes over computer score, they lose
 // game resets when player matches score, or goes over
 
 var playerScore = 0;
-var wins = 0;
-var losses = 0;
-var pictureValue = [3, 5, 8, 9]
-var computerValue = Math.floor(Math.random() * 100 + 20);
-
-$("computer-value").text(computerValue);
+var totalWins = 0;
+var totalLosses = 0;
+var pictureValue = []
+var targetValues = [59, 52, 63, 64, 72]
+var targetScore;
 
 function reset() {
-  computerValue = Math.floor(Math.random() * 100 + 20);
+  for(i = 0; i < 4; i++) {
+  pictureValue[i] = Math.floor(Math.random() * 11 + 1);
+  }
+  targetScore = targetValues[Math.floor(Math.random() * targetValues.length)]
+  console.log(targetScore);
+  playerScore = 0
+  $("#target-value").text(targetScore);
+  $("#wins-text").text("Wins: " + totalWins);
+  $("#losses-text").text("Losses: " + totalLosses);
 };
 
+reset();
+
+console.log(pictureValue);
 for (var i = 0; i < pictureValue.length; i++) {
 
   var crystalImage = $("<img>");
 
   crystalImage.addClass("crystal-image")
 
-  crystalImage.attr("src", "SOURCE");
+  crystalImage.attr("src", "assets/images/crystal.jpg");
 
   crystalImage.attr("data-crystalvalue", pictureValue[i]);
 
@@ -40,13 +51,23 @@ $(".crystal-image").on("click", function() {
   playerScore += crystalValue;
   alert("New Score: " + playerScore)
 
-  if (playerScore === computerValue){
+  if (playerScore === targetScore) {
     alert("You Win!");
+    totalWins++
     reset();
   }
 
-  else if (playerScore >= computerValue) {
+  else if (playerScore >= targetScore) {
     alert("Your lose. Try again.");
+    totalLosses++
     reset();
   }
-});
+})
+
+
+// for(i = 0; i < 3; i++) {
+//  pictureValue[i] = Math.floor(Math.random() * 11 + 1);
+//  console.log(pictureValue);
+// }
+// targetScore = Math.floor(Math.random() * 50 + 30);
+// console.log(targetScore);
